@@ -1,4 +1,4 @@
-const { Thought, User } = require("../models");
+const { Thought, User, Reaction } = require("../models");
 
 module.exports = {
   // Get all thoughts
@@ -64,33 +64,29 @@ module.exports = {
   },
   //create Reaction
   createReaction(req, res) {
-    Reaction.create(req.body)
-      .then((thought) => {
-        return User.findOneAndUpdate(
-          { _id: req.body.userId },
-          { $push: { thoughts: thought._id } },
-          { new: true }
-        );
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $push: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((dbThoughtData) => {
+        res.status(200).json(dbThoughtData);
       })
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No user with that id" })
-          : res.json("created thought")
-      )
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
-  },
-  //Delete reaction
-  deleteReaction(req, res) {
-    Reaction.findOneAndUpdate({ _id: req.params.reactionId })
-      .then((reaction) =>
-        !reaction
-          ? res.status(404).json({ message: "No reaction with that ID" })
-          : Reaction.findOneAndDelete({ _id: { $in: reaction.thoughts } })
-      )
-      .then(() => res.json({ message: "Reaction deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
+  // Delete Reaction
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((dbThoughtData) => {
+      // res.status(200).json(dbThoughtData);
+      if (!dbThoughtData) {
+        res.status(404).json({ message: "No thought with this ID" })
+      return;
+    }
+      .catch((err) => res.status(505).json(err));
+  }
 };
