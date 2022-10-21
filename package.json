@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
-    "seed": "node utils/seed",
+    "seed": "node seeds/seed.js",
     "heroku-postbuild": "node utils/seed.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^6.0.13"
+    "mongoose": "^6.0.13",
+    "seed": "^0.4.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.9"

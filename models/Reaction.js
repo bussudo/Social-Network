@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const { dateFormatter } = require("../utils/format.js");
 
-// Schema to create a course model
+// Schema to create a reaction model
 const reactionSchema = new Schema(
   {
     reactionId: {
