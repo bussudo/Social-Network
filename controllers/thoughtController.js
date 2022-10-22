@@ -82,11 +82,12 @@ module.exports = {
       { runValidators: true, new: true }
     )
       .then((dbThoughtData) => {
-      // res.status(200).json(dbThoughtData);
-      if (!dbThoughtData) {
-        res.status(404).json({ message: "No thought with this ID" })
-      return;
-    }
+        // res.status(200).json(dbThoughtData);
+        if (!dbThoughtData) {
+          res.status(404).json({ message: "No thought with this ID" });
+          return;
+        }
+      })
       .catch((err) => res.status(505).json(err));
-  }
+  },
 };
