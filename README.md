@@ -2,7 +2,7 @@
 
 ## Description
 
-An **object relational mapping (ORM)** backend for e-commerce site.  This includes Express.js API to use Sequelize to interact with MySQL database. Four route files have been modified and are shown in the video. 
+An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. This app uses Express.js for routing, a MongoDB database, and the Mongoose ODM. This includes Express.js API to use Sequelize to interact with MySQL database. Route files have been created and are shown in the videos. 
 
 ### Technologies Used
 
