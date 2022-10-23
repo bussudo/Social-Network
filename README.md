@@ -18,7 +18,7 @@ Mongoose
 
 ### Link to Deployed
 ```
-git@github.com:bussudo/ecommercesiteBE.git
+git@github.com:bussudo/Social-Network.git
 
 ### Link to Videos:
 https://drive.google.com/file/d/1aPTRqySa9Qpc51n8JiqCz4Cnxs_upZV0/view
